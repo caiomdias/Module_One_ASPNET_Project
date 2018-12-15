@@ -1,0 +1,79 @@
+﻿@model IEnumerable<AtWebAsp.Models.FriendViewModel>
+
+<style>
+    th {
+        color: #9932CC;
+    }
+    .mytd{
+       border: none !important;
+    }
+    h3 {
+        color: #4B0082;
+    }
+    table {
+        border-collapse: collapse;
+    }
+    .myheader {
+        background: #9932CC;
+        color: whitesmoke;
+        border-radius: 10px;
+        display: block;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);
+        /*margin: 20px;*/
+        position: relative;
+        margin: 25px 0;
+        transition: all .2s ease-in-out;
+        width: 100%;
+        padding: 15px;
+    }
+    .myheader:hover {
+        /*box-shadow: 0 5px 22px 0 rgba(0,0,0,.25);*/
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        margin-bottom: 54px;
+    }
+</style>
+
+<div class="myheader">
+    <h2>Home</h2>
+    <p>
+        Aqui estao dispostos os amigos aniversariantes do dia e os proximos aniversariantes.
+        Para ver todos os amigos, editar, deletar ou ver detalhes basta ir para a pagina de <b>todos os amigos</b>
+        e para adicionar um novo amigo va para a pagina de <b>Adicionar amigo</b>.
+    </p>
+</div>
+<h3>Aniversariantes do dia - @ViewBag.dateNow.Day/@ViewBag.dateNow.Month/@ViewBag.dateNow.Year</h3>
+
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="mytd">@Html.DisplayFor(modelItem => item.FriendName)</td>
+            <td class="mytd">@Html.DisplayFor(modelItem => item.FriendLastName)</td>
+        </tr>
+    }
+
+</table>
+
+<h3>Proximos aniversariantes</h3>
+
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Data</th>
+    </tr>
+
+    @foreach (var item in ViewBag.FriendsOrderedByBirthDate)
+    {
+        <tr>
+            <td class="mytd">@item.FriendName</td>
+            <td class="mytd">@item.FriendLastName</td>
+            <td class="mytd">@item.FriendBirthDate.Day/@item.FriendBirthDate.Month</td>
+        </tr>
+    }
+</table>

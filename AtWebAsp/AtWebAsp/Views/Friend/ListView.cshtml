@@ -1,0 +1,91 @@
+﻿@model IEnumerable<AtWebAsp.Models.FriendViewModel>
+
+<style>
+    th {
+        color: #9932CC;
+    }
+    a {
+        color: #9932CC;
+        text-decoration: none;
+    }
+        a:hover {
+            text-decoration: none;
+            color: #4B0082;
+        }
+
+    .mytd {
+        border: none !important;
+    }
+
+    h3 {
+        color: #4B0082;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    .myheader {
+        background: #9932CC;
+        color: whitesmoke;
+        border-radius: 10px;
+        display: block;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);
+        /*margin: 20px;*/
+        position: relative;
+        margin: 25px 0;
+        transition: all .2s ease-in-out;
+        width: 100%;
+        padding: 15px;
+    }
+
+        .myheader:hover {
+            /*box-shadow: 0 5px 22px 0 rgba(0,0,0,.25);*/
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            margin-bottom: 54px;
+        }
+
+   
+</style>
+
+<div class="myheader">
+    <h2>Amigos</h2>
+    <p>Aqui estao despostos todos os seus amigos cadastrados, podendo editar, ver os detalhes ou deletar qualquer um deles.</p>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            Sobrenome
+        </th>
+        <th>
+            Data de aniversário
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="mytd">
+                @Html.DisplayFor(modelItem => item.FriendName)
+            </td>
+            <td class="mytd">
+                @Html.DisplayFor(modelItem => item.FriendLastName)
+            </td>
+            <td class="mytd">
+                @Html.DisplayFor(modelItem => item.FriendBirthDate.Day)/
+                @Html.DisplayFor(modelItem => item.FriendBirthDate.Month)/
+                @Html.DisplayFor(modelItem => item.FriendBirthDate.Year)
+            </td>
+            <td class="mytd">
+                @Html.ActionLink("Editar", "Edit", new { id = item.FriendId }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.FriendId }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.FriendId })
+            </td>
+        </tr>
+    }
+</table>

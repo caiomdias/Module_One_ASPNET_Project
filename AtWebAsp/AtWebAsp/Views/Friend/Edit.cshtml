@@ -1,0 +1,112 @@
+﻿@model AtWebAsp.Models.FriendViewModel
+
+<style>
+    a {
+        color: #9932CC;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: none;
+            color: #4B0082;
+        }
+
+    h3 {
+        color: #4B0082;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    .myheader {
+        background: #9932CC;
+        color: whitesmoke;
+        border-radius: 10px;
+        display: block;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);
+        /*margin: 20px;*/
+        position: relative;
+        margin: 25px 0;
+        transition: all .2s ease-in-out;
+        width: 100%;
+        padding: 15px;
+    }
+
+        .myheader:hover {
+            /*box-shadow: 0 5px 22px 0 rgba(0,0,0,.25);*/
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            margin-bottom: 54px;
+        }
+
+    .myform_control {
+        border: 0.5px solid #EE82EE;
+        color: #9932CC;
+    }
+
+    .mybtn {
+        background: #8B008B;
+        color: whitesmoke;
+        border: none;
+    }
+
+        .mybtn:hover {
+            background: whitesmoke;
+            color: #8B008B;
+            border: 0.5px solid #8B008B;
+        }
+</style>
+
+<div class="myheader">
+    <h2>Editar amigo</h2>
+    <p>Para editar um amigo da maneira certa, entre com o novo nome ou novo sobrenome ou uma nova data de aniversario no padrao americano. Ex: 1995/03/23</p>
+</div>
+
+@using (Html.BeginForm("Edit", "Friend", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FriendId, new { htmlAttributes = new { @type="hidden", @class = "" } })
+                @Html.ValidationMessageFor(model => model.FriendId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label  col-md-2">Nome:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FriendName, new { htmlAttributes = new { @class = "myform_control form-control" } })
+                @Html.ValidationMessageFor(model => model.FriendName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label  col-md-2">Sobrenome:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FriendLastName, new { htmlAttributes = new { @class = "myform_control form-control" } })
+                @Html.ValidationMessageFor(model => model.FriendLastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label  col-md-2">Data de aniversário:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FriendBirthDate, new { htmlAttributes = new { @class = "myform_control form-control" } })
+                @Html.ValidationMessageFor(model => model.FriendBirthDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Editar" class="mybtn btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

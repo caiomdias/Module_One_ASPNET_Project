@@ -1,0 +1,97 @@
+﻿@model AtWebAsp.Models.FriendViewModel
+
+<style>
+    a {
+        color: #9932CC;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: none;
+            color: #4B0082;
+        }
+
+
+    h3 {
+        color: #4B0082;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    .myheader {
+        font-size: 14px;
+        margin-top: 50px;
+        margin-bottom: 25px;
+        color: #8B008B;
+    }
+
+    .mybtn {
+        display: inline;
+        margin-right: 10px;
+        background: #8B008B;
+        width: 35px;
+        padding: 7px;
+        border-radius: 5px;
+        height: 50px;
+        border: none;
+    }
+        .mybtn a {
+            color: whitesmoke;
+        }
+
+            .mybtn a:hover {
+                color: #8B008B;
+            }
+
+        .mybtn:hover {
+            background: whitesmoke;
+            color: #8B008B;
+            border: 0.5px solid #8B008B;
+        }
+</style>
+
+<div class="myheader">
+    <dl class="dl-horizontal">
+        <dt>
+            Nome: 
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FriendName)
+        </dd>
+
+        <dt>
+            Sobrenome:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FriendLastName)
+        </dd>
+
+        <dt>
+            Data de aniversário:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FriendBirthDate.Day)/
+            @Html.DisplayFor(model => model.FriendBirthDate.Month)/
+            @Html.DisplayFor(model => model.FriendBirthDate.Year)
+        </dd>
+
+        <dt>
+            Dias para o aniversário:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FriendDaysToBirthDate)
+        </dd>
+
+    </dl>
+</div>
+<div class="mybtn">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.FriendId })
+</div>
+<div class="mybtn">
+    @Html.ActionLink("Todos os Amigos", "ListView")
+</div>
